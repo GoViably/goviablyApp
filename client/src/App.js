@@ -1,18 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Landing, Register, Error, ProtectedRoute } from './pages'
-import {
-  AddJob,
-  AllJobs,
-  Profile,
-  Stats,
-  SharedLayout,
-} from './pages/dashboard'
-import {
-  Marketplace,
-  MarketplaceLayout,
-  BathBody,
-  SingleProduct,
-} from './pages/marketplace'
+import { AddJob, AllJobs, Profile, Stats, SharedLayout } from './pages/dashboard'
+import { Marketplace, MarketplaceLayout, BathBody, SingleProduct } from './pages/marketplace'
 
 function App() {
   return (
