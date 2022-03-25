@@ -29,6 +29,8 @@ import {
   CLEAR_FILTERS,
   CHANGE_PAGE,
   GET_ALL_PRODUCTS,
+  GET_SINGLE_PRODUCT_BEGIN,
+  GET_SINGLE_PRODUCT,
 } from './actions'
 
 const token = localStorage.getItem('token')
@@ -66,6 +68,7 @@ const initialState = {
   sortOptions: ['latest', 'oldest', 'a-z', 'z-a'],
   products: [],
   productCount: 0,
+  product: {},
 }
 
 const AppContext = React.createContext()
@@ -148,6 +151,15 @@ const AppProvider = ({ children }) => {
     } catch (error) {
       console.log(error.response)
     }
+  }
+
+  const getSingleProduct = async (id) => {
+    dispatch({ type: GET_SINGLE_PRODUCT_BEGIN })
+    try {
+      const { data } = await axios(`/api/v1/products/${id}`)
+      const { product } = data
+      dispatch({ type: GET_SINGLE_PRODUCT, payload: { product } })
+    } catch (error) {}
   }
 
   const toggleSidebar = () => {
@@ -316,6 +328,7 @@ const AppProvider = ({ children }) => {
         clearFilters,
         changePage,
         getAllProducts,
+        getSingleProduct,
       }}
     >
       {children}

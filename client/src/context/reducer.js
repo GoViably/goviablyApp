@@ -26,6 +26,8 @@ import {
   CLEAR_FILTERS,
   CHANGE_PAGE,
   GET_ALL_PRODUCTS,
+  GET_SINGLE_PRODUCT,
+  GET_SINGLE_PRODUCT_BEGIN,
 } from './actions'
 
 import { initialState } from './appContext'
@@ -254,6 +256,19 @@ const reducer = (state, action) => {
       ...state,
       products: action.payload.products,
       productCount: action.payload.count,
+    }
+  }
+  if (action.type === GET_SINGLE_PRODUCT_BEGIN) {
+    return {
+      ...state,
+      isLoading: true,
+    }
+  }
+  if (action.type === GET_SINGLE_PRODUCT) {
+    return {
+      ...state,
+      isLoading: false,
+      product: action.payload.product,
     }
   }
   throw new Error(`no such action: ${action.type}`)

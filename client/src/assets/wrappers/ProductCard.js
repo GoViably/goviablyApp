@@ -22,6 +22,7 @@ const Wrapper = styled.section`
     align-self: end;
     margin: 0;
     padding: 0;
+    font-size: 34px;
   }
 
   .company {

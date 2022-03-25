@@ -35,23 +35,20 @@ const Marketplace = () => {
           <div
             className='card card1'
             onClick={() => {
-              navigate('/bath-body')
+              navigate('/products/bathBody')
             }}
           >
             <h4 className='card-title'>bath and body</h4>
-            <img
-              className='product-banner-img1'
-              src={bathBody}
-              alt='bath and body products'
-            />
+            <img className='product-banner-img1' src={bathBody} alt='bath and body products' />
           </div>
-          <div className='card card2'>
+          <div
+            className='card card2'
+            onClick={() => {
+              navigate('/products/outdoors')
+            }}
+          >
             <h4 className='card-title'>outdoors</h4>
-            <img
-              className='product-banner-img2'
-              src={outdoors}
-              alt='bath and body products'
-            />
+            <img className='product-banner-img2' src={outdoors} alt='bath and body products' />
           </div>
         </div>
       </Wrapper>

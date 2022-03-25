@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 import { useAppContext } from '../../context/appContext'
-import Wrapper from '../../assets/wrappers/BathBody'
+import Wrapper from '../../assets/wrappers/Category'
 import { ProductCard } from '../../components'
 
-const BathBody = () => {
+const Category = () => {
+  let { category } = useParams()
   const { getAllProducts, products } = useAppContext()
-  const count = products.filter((product) => product.category === 'bathBody')
+  const count = products.filter((product) => product.category === category)
   useEffect(() => {
     getAllProducts()
   }, [])
@@ -13,7 +15,7 @@ const BathBody = () => {
     <Wrapper>
       <div className='product-wrapper'>
         {products
-          .filter((product) => product.category === 'bathBody')
+          .filter((product) => product.category === category)
           .map((product) => (
             <div className='product-card'>
               <ProductCard key={product._id} product={product} />
@@ -25,4 +27,4 @@ const BathBody = () => {
   )
 }
 
-export default BathBody
+export default Category

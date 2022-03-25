@@ -1,6 +1,7 @@
-import axios from 'axios'
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
+import { useAppContext } from '../../context/appContext'
+import { Loading } from '../../components'
 import styled from 'styled-components'
 import cartEmpty from '../../assets/images/cartEmpty.png'
 import cartFilled from '../../assets/images/cartFilled.png'
@@ -8,37 +9,38 @@ import heartEmpty from '../../assets/images/heartEmpty.png'
 import heartFilled from '../../assets/images/heartFilled.png'
 import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai'
 import { BsBagPlusFill } from 'react-icons/bs'
+import { BiCategory } from 'react-icons/bi'
 
 const SingleProduct = () => {
   let { id } = useParams()
-  const [currentProduct, setCurrentProduct] = useState({})
+  const navigate = useNavigate()
+  const { getSingleProduct, product, isLoading } = useAppContext()
   const [fillHeart, setFillHeart] = useState(false)
   const [fillCart, setFillCart] = useState(false)
   const [quantity, setQuantity] = useState(1)
   useEffect(() => {
-    const getProducts = async () => {
-      const { data } = await axios(`/api/v1/products/${id}`)
-      console.log(data)
-      setCurrentProduct(data.product)
-    }
-    getProducts()
+    getSingleProduct(id)
   }, [])
-  return (
+  return isLoading ? (
+    <div style={{ margin: '200px 0 0 0' }}>
+      <Loading />
+    </div>
+  ) : (
     <Wrapper>
       <div className='main-container'>
         <div className='left-side'>
-          <img className='product-image' src={currentProduct.image} />
+          <img className='product-image' src={product.image} />
         </div>
         <div className='right-side'>
-          <h2>{`${currentProduct.name}`}</h2>
+          <h2>{`${product.name}`}</h2>
           <p className='text'>
-            <span>Company: </span> {currentProduct.company}
+            <span>Company: </span> {product.company}
           </p>
           <p className='text'>
-            <span>Price: </span> ${(currentProduct.price / 100).toFixed(2)}
+            <span>Price: </span> ${(product.price / 100).toFixed(2)}
           </p>
           <p className='text'>
-            <span>Sustainability Score: </span> {currentProduct.score}
+            <span>Sustainability Score: </span> {product.score}
           </p>
           <div className='quantity'>
             <label htmlFor='quantity'>quantity: </label>
@@ -89,18 +91,25 @@ const SingleProduct = () => {
             </div>
             <div>
               <span>Go to cart</span>
-              <div>
+              <div className='bs-icons'>
                 <BsBagPlusFill width={400} />
               </div>
             </div>
-            <div>
+            <div
+              onClick={() => {
+                navigate(`/products/${product.category}`)
+              }}
+            >
               <span>product Category</span>
+              <div className='bi-icons'>
+                <BiCategory />
+              </div>
             </div>
           </div>
         </div>
         <div className='bottom'>
           <p className='text'>
-            <span>description: </span> {currentProduct.description}
+            <span>description: </span> {product.description}
           </p>
         </div>
       </div>
@@ -171,11 +180,11 @@ const Wrapper = styled.main`
 
   .icons-container > div {
     display: flex;
-
+    justify-content: center;
     align-items: center;
     width: 250px;
     gap: 10px;
-    padding: 5px 20px;
+    padding: 3px 20px;
     background: var(--grey-200);
     border-radius: var(--borderRadius);
     cursor: pointer;
@@ -186,8 +195,21 @@ const Wrapper = styled.main`
     }
   }
 
+  .icons-container > div:nth-child(-n + 2) {
+    padding: 7px;
+  }
+
   .icons-container > div > span {
     font-size: 20px;
+  }
+
+  .bs-icons,
+  .bi-icons {
+    width: 20px;
+    height: 45px;
+    font-size: 30px;
+    padding: 0;
+    color: #03be00;
   }
   .icons {
     width: 38px;

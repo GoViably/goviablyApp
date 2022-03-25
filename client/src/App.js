@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Landing, Register, Error, ProtectedRoute } from './pages'
 import { AddJob, AllJobs, Profile, Stats, SharedLayout } from './pages/dashboard'
-import { Marketplace, MarketplaceLayout, BathBody, SingleProduct } from './pages/marketplace'
+import { Marketplace, MarketplaceLayout, Category, SingleProduct } from './pages/marketplace'
 
 function App() {
   return (
@@ -16,7 +16,7 @@ function App() {
           }
         >
           <Route index element={<Marketplace />} />
-          <Route path='bath-body' element={<BathBody />} />
+          <Route path='products/:category' element={<Category />} />
           <Route path='product/:id' element={<SingleProduct />} />
         </Route>
         <Route
