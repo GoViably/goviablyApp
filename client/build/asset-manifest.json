@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/static/css/main.09601691.css",
+    "main.js": "/static/js/main.92a96c81.js",
+    "static/media/yellow-flower.gif": "/static/media/yellow-flower.fb9a61db63f491800733.gif",
+    "static/media/purple-flower.gif": "/static/media/purple-flower.1d30613d7fc8bf4de31e.gif",
+    "static/media/outdoors.png": "/static/media/outdoors.fb5087119e0defcaccbd.png",
+    "static/media/bathandbody.png": "/static/media/bathandbody.207469be2d9c21131c8d.png",
+    "static/media/cartFilled.png": "/static/media/cartFilled.dfc56b688f6d2770781f.png",
+    "static/media/not-found.svg": "/static/media/not-found.5eb3e64476624b8a49d7d75cc64a0d40.svg",
+    "static/media/main.svg": "/static/media/main.f1624efcba3ac7e36d1e54d5606200bb.svg",
+    "static/media/heartEmpty.png": "/static/media/heartEmpty.8fb197e7f31052545a22.png",
+    "static/media/cartEmpty.png": "/static/media/cartEmpty.110a1489f7c61f3aca45.png",
+    "index.html": "/index.html",
+    "main.09601691.css.map": "/static/css/main.09601691.css.map",
+    "main.92a96c81.js.map": "/static/js/main.92a96c81.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.09601691.css",
+    "static/js/main.92a96c81.js"
+  ]
+}
